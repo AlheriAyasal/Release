@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Release</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Lora&family=Playfair+Display&family=Caveat:wght@500&family=Dancing+Script:wght@500&family=Courier+Prime&family=Special+Elite&family=Inter:wght@400;600&display=swap">
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#17203a;--muted:#5d6785;--line:#d9deea;--acc:#2f3fa8;--onacc:#fff;--field:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1424;--card:#171e33;--ink:#e8ecf8;--muted:#9aa5c6;--line:#2a3350;--acc:#8c9bff;--onacc:#0f1424;--field:#0f1424}}
+:root[data-theme="dark"]{--bg:#0f1424;--card:#171e33;--ink:#e8ecf8;--muted:#9aa5c6;--line:#2a3350;--acc:#8c9bff;--onacc:#0f1424;--field:#0f1424}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif}
+main{max-width:880px;margin:0 auto;padding:16px 16px 48px}
+.sub{color:var(--muted);margin:0 0 14px}.note{color:var(--muted);font-size:14px}
+nav{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+nav button{background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;color:var(--muted);font:600 15px Inter,sans-serif;cursor:pointer;white-space:nowrap}
+nav button[aria-selected=true]{color:var(--ink);border-color:var(--acc)}
+input,textarea,select{width:100%;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--field);color:var(--ink);font:inherit}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+button.p{background:var(--acc);color:var(--onacc);border:0;border-radius:6px;padding:10px 18px;font-weight:600;margin-top:16px}
+button.s{background:none;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:6px 10px;font-size:13px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px}
+.panel label,.fl{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+.logo{font:italic 500 clamp(68px,17vw,120px)/1 "Cormorant Garamond",Georgia,serif;margin:0}
+.land{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
+.go{display:flex;align-items:center;gap:14px;margin-top:28px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:12px 26px 12px 14px;font-weight:600;font-size:18px}
+.plus{width:38px;height:38px;border-radius:50%;background:var(--acc);color:var(--onacc);display:grid;place-items:center;font-size:26px;line-height:1}
+.go svg{color:var(--acc)}
+.mini{font:italic 500 28px "Cormorant Garamond",Georgia,serif}
+.ph{font:italic 500 38px/1.1 "Cormorant Garamond",Georgia,serif;margin:8px 0 2px}
+.hdr{display:flex;justify-content:space-between;align-items:center}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.chips button[aria-pressed=true]{background:var(--acc);color:var(--onacc);border-color:var(--acc)}
+.cover{background:var(--cv);aspect-ratio:3/4;display:grid;place-items:center;border-radius:6px 12px 12px 6px;box-shadow:inset 8px 0 8px -6px rgba(0,0,0,.35);position:relative;overflow:hidden;font-family:var(--bf)}
+.cover.lace::before{content:"";position:absolute;left:0;top:0;bottom:0;width:20px;background:radial-gradient(circle at 100% 50%,transparent 6px,#f6efe0 7px) 0 0/20px 16px}
+.lbl{display:inline-block;max-width:88%;background:linear-gradient(145deg,color-mix(in srgb,var(--lc) 75%,#fff),var(--lc) 50%,color-mix(in srgb,var(--lc) 78%,#000));color:var(--lt);padding:10px 26px;border-radius:4px;font:700 22px/1.2 var(--tf);letter-spacing:.07em;text-transform:uppercase;text-align:center;outline:2px solid var(--lt);outline-offset:-6px;box-shadow:0 3px 8px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.55);text-shadow:0 1px 0 rgba(255,255,255,.3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.th{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;color:var(--ink);text-align:left;display:flex;flex-direction:column;gap:4px}
+.th[aria-pressed=true]{outline:3px solid var(--acc);outline-offset:1px}
+.th .cover{aspect-ratio:3/4}
+.th .lbl{font-size:11px;padding:5px 10px;letter-spacing:.04em}
+.smp{background:var(--pp);color:var(--ik);padding:12px;border-radius:6px;font-size:20px;line-height:1.4;min-height:96px}
+.swt{display:flex;gap:10px;margin:8px 0;justify-content:center}
+.swt button{width:34px;height:34px;border-radius:50%;border:2px solid var(--line)}
+.swt button[aria-pressed=true]{outline:3px solid var(--acc);outline-offset:2px}
+.sheet{background:var(--pp);color:var(--ik);border-radius:8px;overflow:hidden;font-family:var(--bf);box-shadow:0 2px 12px rgba(0,0,0,.2);max-width:620px;margin:0 auto 16px}
+.band{background:var(--cv);padding:14px 18px 18px;position:relative}
+.sheet.lace .band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:radial-gradient(circle at 50% 100%,transparent 6px,#f6efe0 7px) 0 0/16px 10px}
+.body{padding:16px 22px 26px;min-height:660px}
+.sheet label{display:block;font:600 13px Inter,sans-serif;margin:12px 0 2px;opacity:.75}
+.sheet input,.sheet textarea,.sheet select{background:transparent;color:var(--ik);border:0;border-bottom:1px solid rgba(0,0,0,.3);border-radius:0;padding:6px 2px;font:inherit}
+.sheet textarea{min-height:300px;resize:vertical;line-height:32px;background:repeating-linear-gradient(transparent 0 31px,rgba(0,0,0,.14) 31px 32px);border:0;border-left:2px solid rgba(200,80,80,.5);border-radius:0;padding:0 8px}
+.sheet select option{color:#222}
+.sheet button.p{background:var(--ik);color:var(--pp)}
+.moods{display:flex;gap:6px;flex-wrap:wrap}
+.moods button{font-size:22px;padding:4px 8px;background:transparent;border:1px solid rgba(0,0,0,.25);border-radius:8px}
+.moods button[aria-pressed=true]{outline:2px solid var(--ik);background:rgba(0,0,0,.1)}
+.tags{opacity:.7;font-size:14px}
+.entry{border-top:1px solid rgba(128,128,128,.3);padding:12px 0}.entry p{margin:4px 0;white-space:pre-wrap}.entry small{opacity:.7}
+.msg{font-weight:600;margin-top:8px;min-height:1.4em}
+.pg{min-height:680px;padding:22px 24px;line-height:1.75}
+.pg h3{font-size:26px;margin:0 0 4px;font-weight:500}.pg p{white-space:pre-wrap;margin:8px 0}
+.pg.c{display:grid;place-items:center;text-align:center}
+.im{max-width:100%;border-radius:4px;display:block}
+.im.small{float:left;width:36%;margin:4px 16px 8px 0}
+.im.cap{margin:0 auto 10px;max-height:340px}
+.cp{text-align:center;font-style:italic}
+.nv{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.im.l{float:left;width:38%;margin:4px 14px 8px 0}.im.r{float:right;width:38%;margin:4px 0 8px 14px}
+.pgrid{display:grid;gap:8px;margin:8px 0}.pgrid.g1,.pgrid.g2{grid-template-columns:1fr}.pgrid.g3,.pgrid.g4{grid-template-columns:1fr 1fr}.pgrid img{width:100%;object-fit:cover;border-radius:4px;aspect-ratio:4/3}
+.sheet button.s{color:var(--ik);border-color:rgba(0,0,0,.3)}
+.side{display:flex;gap:14px;align-items:flex-start}.side>.pics{flex:0 0 42%;display:grid;gap:8px}.side>div:last-child{flex:1;min-width:0}
+figure{margin:0}.pics img,.flow img{width:100%;border-radius:4px;display:block}.flow figure{margin:14px 0}figcaption{font-size:.85em;font-style:italic;opacity:.8;margin-top:2px}.pgrid.g3 figure:first-child{grid-column:1/3}
+.sig{border-top:1px solid rgba(128,128,128,.4);margin-top:18px;padding-top:8px;display:grid;gap:8px}.sg p{margin:0;font-style:italic}.sigadd{display:flex;gap:8px}
+.pvi{display:flex;gap:10px;align-items:center;margin:8px 0}.pvi img{width:84px;height:84px;object-fit:cover;border-radius:4px}
+.months{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.code{font:600 20px "Courier Prime",monospace;letter-spacing:.08em;padding:10px;background:var(--bg);border:1px dashed var(--line);border-radius:6px;margin-top:8px;word-break:break-all}
+</style></head>
+<body><main>
+<header id="hd"></header>
+<nav role="tablist" id="tabs"></nav>
+<section id="v"></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+var sb=supabase.createClient('https://vowwrqqvvctccgvzxqtf.supabase.co','sb_publishable_hgvzFNmJW_hDuZrC7h5e5w_EUhpcOt0'),U=null,HL=null,st;
+function load(k,d){return k==='jr2_l'&&HL?HL:d}
+function save(k,v){if(!U)return;if(k==='jr2_s'){clearTimeout(st);st=setTimeout(function(){sb.from('profiles').update({look:S.look,color:S.color,title:S.title,font:S.font}).eq('id',U.id).then(function(){})},400)}else if(k==='jr2_l'){sb.from('heirs').upsert({user_id:U.id,heir_name:v.name,heir_email:v.email,mode:v.mode,inactivity_months:+v.months}).then(function(){})}}
+var P={
+solid:function(c){return c},
+gingham:function(c){return 'repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0 8px,transparent 8px 16px),repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 8px,transparent 8px 16px),'+c},
+plaid:function(c){return 'repeating-linear-gradient(0deg,rgba(0,0,0,.3) 0 10px,transparent 10px 30px),repeating-linear-gradient(90deg,rgba(0,0,0,.3) 0 10px,transparent 10px 30px),repeating-linear-gradient(90deg,rgba(255,255,255,.14) 0 2px,transparent 2px 30px),'+c},
+stripe:function(c){return 'repeating-linear-gradient(90deg,rgba(255,255,255,.25) 0 6px,transparent 6px 18px),'+c},
+dots:function(c){return 'radial-gradient(rgba(255,255,255,.6) 2.5px,transparent 3px) 0 0/18px 18px,'+c},
+toile:function(c){return 'radial-gradient(circle at 30% 30%,rgba(255,255,255,.5) 0 5px,transparent 6px) 0 0/34px 34px,radial-gradient(circle at 70% 70%,rgba(255,255,255,.35) 0 3px,transparent 4px) 0 0/34px 34px,'+c},
+zebra:function(c){return 'repeating-linear-gradient(115deg,rgba(0,0,0,.55) 0 7px,transparent 7px 22px),'+c},
+hide:function(c){return 'radial-gradient(ellipse 30px 20px at 20% 30%,rgba(45,28,20,.8) 0 98%,transparent) 0 0/90px 70px,radial-gradient(ellipse 22px 30px at 70% 70%,rgba(45,28,20,.8) 0 98%,transparent) 0 0/90px 70px,'+c},
+croc:function(c){return 'radial-gradient(circle,rgba(0,0,0,.3) 0 5px,transparent 6px) 0 0/14px 14px,'+c},
+stars:function(c){return 'radial-gradient(#fff 1px,transparent 1.5px) 0 0/40px 40px,radial-gradient(#fff 1px,transparent 1.5px) 20px 20px/60px 60px,'+c},
+frame:function(c){return 'radial-gradient(ellipse 34% 38% at 50% 50%,#f1e7cf 0 88%,#c9a95a 90% 96%,transparent 97%),radial-gradient(circle at 20% 80%,rgba(214,140,160,.7) 0 14px,transparent 15px),radial-gradient(circle at 80% 20%,rgba(214,140,160,.7) 0 14px,transparent 15px),'+c},
+wash:function(c){return 'radial-gradient(circle at 20% 20%,rgba(255,255,255,.45),transparent 50%),radial-gradient(circle at 80% 80%,rgba(0,0,0,.2),transparent 55%),'+c},
+check:function(c){return 'repeating-conic-gradient(rgba(255,255,255,.28) 0 25%,transparent 0 50%) 0 0/28px 28px,'+c},
+linen:function(c){return 'repeating-linear-gradient(0deg,rgba(255,255,255,.14) 0 1px,transparent 1px 4px),'+c}};
+var LK=[
+['Gingham Ribbon','gingham',['#1f2f5c','#7a2f3f','#2e5a4a','#4a3a6b'],'#fffdf8','#1d2340',1],
+['Midnight Plaid','plaid',['#1b2540','#3b1f2b','#1f3a33','#2a2a2a'],'#f7f3ea','#1d2030',1],
+['Botanical Junk','frame',['#8fa08a','#b9a58c','#9aa7b8','#b8909a'],'#f3ead5','#3a3a2a',1],
+['Rose Toile','toile',['#d99fb5','#b9a3d6','#9fc3b7','#e5b48f'],'#fff7f8','#4a2f3c',0],
+['Pink Lace','solid',['#f0b6c8','#f6d6a8','#c9b6ec','#b4d8c6'],'#fff9fa','#4a2f3c',1],
+['Crimson Croc','croc',['#9b1c33','#1f5a46','#23305c','#2b2b2b'],'#fbf6f2','#2a1a1e',0],
+['Zebra Hide','zebra',['#c9a97a','#e6e0d6','#d99fb5','#a8b8a0'],'#fffaf2','#2a2420',0],
+['Cow Print','hide',['#efe6d8','#e9d6c0','#dcd6e6','#d3e0d6'],'#fffaf3','#2a2018',0],
+['Soft Linen','linen',['#d9cdb6','#c3ccd6','#d6c0c0','#bfd1c2'],'#fffdf8','#33302a',0],
+['Leather Noir','solid',['#1c1c1f','#3a2a22','#22303a','#3a1f2a'],'#f6f2ea','#1c1c1f',0],
+['Starry Night','stars',['#16204a','#2a1b4f','#0f3a3f','#3a1530'],'#f3f1fb','#1b1f3a',0],
+['Ocean Wave','wash',['#2f7fa8','#2a9d8f','#5b6fc2','#4a8f9e'],'#f6fbfd','#17303a',0],
+['Sunset Haze','wash',['#e8805a','#d9647a','#e3a64f','#b565a8'],'#fff8f3','#43241f',0],
+['Lavender Field','stripe',['#8f7bc2','#b08fb0','#7ba2c2','#a2b87b'],'#faf8ff','#2e2646',0],
+['Cottage Check','check',['#c24a4a','#4a7ac2','#4ac29a','#c2a24a'],'#fffdf7','#3a2626',0],
+['Postcard','stripe',['#e8dcc0','#c9d8e8','#e8c9c9','#cfe8cf'],'#fffef9','#33302a',0],
+['Wedding Pearl','dots',['#f1ebdc','#e9d9e0','#dde6e9','#e8e2c8'],'#fffefb','#4a4236',1],
+['Watercolor Bloom','wash',['#d7a3c9','#a3c9d7','#c9d7a3','#d7c9a3'],'#fffdfc','#3a2f3a',0],
+['Polka Dot','dots',['#c8506a','#2f6fb5','#2a8a6a','#d9922f'],'#fffdf9','#2a2a33',0],
+['Minimal Paper','solid',['#f2f2f2','#e3e8ee','#ece5dc','#222222'],'#ffffff','#1c1c1c',0]];
+var FT=[['Lora, Georgia, serif','Lora'],["'Playfair Display', Georgia, serif",'Playfair Display'],["'Cormorant Garamond', Georgia, serif",'Cormorant'],['Caveat, cursive','Caveat'],["'Dancing Script', cursive",'Dancing Script'],["'Courier Prime', monospace",'Courier Prime'],["'Special Elite', monospace",'Typewriter'],['Inter, system-ui, sans-serif','Inter']];
+var KD=[['all','Everyday journal','Good days and hard days in one book',0],['good','Good days','Only the bright moments',0],['hard','Hard days','Thoughts and all, no filter',0],['pic','Picture journal','Photos with short captions',1],['travel','Travel journal','Photos and stories from the road',1],['wed','Wedding journal','Planning, the day, and after',1],['couple','Couple journal','Shared with your partner',1]];
+var S=load('jr2_s',{look:0,color:0,title:'My Journal',font:0,lc:0,tf:1}),B=load('jr2_b',[]),E=load('jr2_e',[]);
+var screen='land',tab='write',cur=B.length?B[0].id:'',pg=0,sel=['all'],curM=null,mood=[],today=new Date().toISOString().slice(0,10);
+var LC=['#c9a24a','#b7bcc7','#d98a9b','#1d2a52','#f3e9d2','#1c1c1c'],edit='';
+var LY={pic:[['p1','1 photo on the page'],['p2','2 photos on the page'],['p4','4 photos on the page']],travel:[['spread','2 photos, one on each side'],['small','Small photo beside my story'],['cap','Large photo with a caption']],def:[['small','Small photo beside my story'],['cap','Large photo with a caption'],['p2','2 photos on the page']]};
+function lt(h){var n=parseInt(h.slice(1),16),y=((n>>16)*299+((n>>8)&255)*587+(n&255)*114)/1000;return y>150?'#1c1c1c':'#fff8e8'}
+function theme(i,ci){var l=LK[i===undefined?S.look:i],c=l[2][ci===undefined?S.color:ci];return '--cv:'+P[l[1]](c)+';--pp:'+l[3]+';--ik:'+l[4]+';--bf:'+FT[S.font][0]+';--lc:'+LC[S.lc]+';--lt:'+lt(LC[S.lc])+';--tf:'+FT[S.tf][0]}
+function applyBook(){var b=bk();if(b)S={look:b.look,color:b.color,title:b.title,font:b.font,lc:b.lc,tf:b.tf}}
+function lace(){return LK[S.look][5]?' lace':''}
+function bk(){return B.filter(function(b){return b.id===cur})[0]||B[0]}
+function be(){return E.filter(function(e){return e.book===bk().id}).sort(function(a,b){return a.date<b.date?-1:1})}
+function mName(k){var p=k.split('-');return new Date(+p[0],+p[1]-1,1).toLocaleDateString('en-US',{month:'long',year:'numeric'})}
+function dName(d){var p=d.split('-');return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}
+function meta(e){var a=[];if(e.mood)a.push(e.mood);if(e.wx)a.push(e.wx);if(e.song)a.push('\u266a '+esc(e.song));return a.length?'<div class="tags">'+a.join(' &nbsp; ')+'</div>':''}
+function on(sel,fn){document.querySelectorAll(sel).forEach(fn)}
+function render(){
+ var a=screen==='app';if(a)applyBook();$('#tabs').style.display=a?'':'none';
+ $('#hd').innerHTML=a?'<div class="hdr"><span class="mini">Release</span><span><button class="s" id="jn">Join a journal</button> <button class="s" id="nb">New journal</button> <button class="s" id="st">Change look</button> <button class="s" id="so2">Sign out</button></span></div><div class="chips">'+B.map(function(b){return '<button class="s" data-b="'+b.id+'" aria-pressed="'+(b.id===cur)+'">'+esc(b.name)+'</button>'}).join('')+'</div>':'';
+ if(a){var T={write:'Write',read:'Read',months:'Months',legacy:'Legacy'};
+  $('#tabs').innerHTML=Object.keys(T).map(function(k){return '<button role="tab" aria-selected="'+(k===tab)+'" data-t="'+k+'">'+T[k]+'</button>'}).join('');
+  on('#tabs button',function(b){b.onclick=function(){tab=b.dataset.t;pg=0;render()}});
+  on('[data-b]',function(b){b.onclick=function(){cur=b.dataset.b;pg=0;render()}});
+  $('#st').onclick=function(){edit=cur;screen='look';render()};$('#nb').onclick=function(){edit='';screen='look';render()};$('#jn').onclick=joinCode;$('#so2').onclick=function(){sb.auth.signOut().then(function(){location.reload()})}}
+ ({auth:rAuth,join:rJoin,land:rLand,look:rLook,font:rFont,kinds:rKinds,app:function(){({write:rWrite,read:rRead,months:rMonths,legacy:rLegacy})[tab]()}})[screen]();
+}
+function rLand(){
+ $('#v').innerHTML='<div class="land"><h1 class="logo">Release</h1><p class="sub">Write the day down. Keep the moment.</p><button class="go" id="go"><span class="plus" aria-hidden="true">+</span><span>Get releasing</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h10l4 4v3"/><path d="M14 4v4h4"/><path d="M4 4v16h7"/><path d="M20 14l-6 6-3 .5.5-3 6-6z"/></svg></button><button class="s" id="jn2" style="margin-top:14px">I have a share code</button></div>';
+ $('#go').onclick=function(){screen=B.length?'app':'look';render()};$('#jn2').onclick=joinCode;
+}
+function rLook(){
+ var l=LK[S.look];
+ $('#v').innerHTML='<button class="s" id="bk">\u2190 Back</button><h2 class="ph">Choose your journal</h2><p class="sub">Pick a cover, then a color and a title.</p><div style="'+theme()+';max-width:300px;margin:0 auto"><div class="cover'+lace()+'"><span class="lbl" id="pl">'+esc(S.title)+'</span></div></div><p class="note" style="text-align:center;margin:8px 0 0">'+l[0]+'</p><div class="swt">'+l[2].map(function(c,i){return '<button data-c="'+i+'" aria-label="Color '+(i+1)+'" aria-pressed="'+(i===S.color)+'" style="background:'+c+'"></button>'}).join('')+'</div><label class="fl" for="ti">Title</label><input id="ti" maxlength="30" value="'+esc(S.title)+'"><label class="fl">Label color</label><div class="swt" style="justify-content:flex-start">'+LC.map(function(c,i){return '<button data-lc="'+i+'" aria-label="Label color '+(i+1)+'" aria-pressed="'+(i===S.lc)+'" style="background:'+c+'"></button>'}).join('')+'</div><label class="fl" for="tf">Title font</label><select id="tf">'+FT.map(function(f,i){return '<option value="'+i+'"'+(i===S.tf?' selected':'')+'>'+f[1]+'</option>'}).join('')+'</select><div class="grid" style="margin-top:16px">'+LK.map(function(k,i){return '<button class="th" data-l="'+i+'" aria-pressed="'+(i===S.look)+'"><div style="'+theme(i)+'"><div class="cover'+(k[5]?' lace':'')+'"></div></div><span>'+k[0]+'</span></button>'}).join('')+'</div><button class="p" id="nx">Continue</button>';
+ $('#ti').oninput=function(){S.title=this.value;$('#pl').textContent=this.value;save('jr2_s',S)};
+ on('[data-c]',function(b){b.onclick=function(){S.color=+b.dataset.c;save('jr2_s',S);rLook()}});on('[data-lc]',function(b){b.onclick=function(){S.lc=+b.dataset.lc;save('jr2_s',S);rLook()}});$('#tf').onchange=function(){S.tf=+this.value;save('jr2_s',S);rLook()};
+ on('[data-l]',function(b){b.onclick=function(){S.look=+b.dataset.l;save('jr2_s',S);rLook();window.scrollTo(0,0)}});
+ $('#bk').onclick=function(){screen=B.length?'app':'land';render()};$('#nx').onclick=function(){screen='font';render()};
+}
+function rFont(){
+ $('#v').innerHTML='<button class="s" id="bk">\u2190 Back</button><h2 class="ph">Choose your handwriting</h2><p class="sub">This is how your pages will look.</p><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">'+FT.map(function(f,i){return '<button class="th" data-f="'+i+'" aria-pressed="'+(i===S.font)+'" style="'+theme()+'"><div class="smp" style="font-family:'+f[0]+'">Today felt like a slow exhale, and the rain didn’t mind.</div><span>'+f[1]+'</span></button>'}).join('')+'</div><button class="p" id="nx">Continue</button>';
+ on('[data-f]',function(b){b.onclick=function(){S.font=+b.dataset.f;save('jr2_s',S);rFont()}});
+ $('#bk').onclick=function(){screen='look';render()};$('#nx').onclick=function(){if(edit){sb.from('books').update({look:S.look,color:S.color,title:S.title,font:S.font,label_color:S.lc,title_font:S.tf}).eq('id',edit).then(function(){edit='';return loadAll()}).then(function(){screen='app';render()})}else{screen='kinds';render()}};
+}
+function rKinds(){
+ $('#v').innerHTML='<button class="s" id="bk">\u2190 Back</button><h2 class="ph">What will you keep?</h2><p class="sub">Choose one book or several. Good days and hard days can share one book or have their own.</p><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(210px,1fr))">'+KD.map(function(k){return '<button class="th" data-k="'+k[0]+'" aria-pressed="'+(sel.indexOf(k[0])>=0)+'"><b>'+k[1]+'</b><span class="note">'+k[2]+'</span></button>'}).join('')+'</div><button class="p" id="nx">Create my journals</button><p class="note" style="margin-top:16px">Have a code from your partner? <button class="s" id="jk">Join a shared journal</button></p>';
+ on('[data-k]',function(b){b.onclick=function(){var i=sel.indexOf(b.dataset.k);if(i<0)sel.push(b.dataset.k);else sel.splice(i,1);rKinds()}});
+ $('#bk').onclick=function(){screen='font';render()};$('#jk').onclick=joinCode;$('#nx').onclick=function(){if(!sel.length)sel=['all'];
+ var rows=KD.filter(function(k){return sel.indexOf(k[0])>=0}).map(function(k){return {owner_id:U.id,kind:k[0],name:k[1],look:S.look,color:S.color,title:S.title,font:S.font,label_color:S.lc,title_font:S.tf}});
+ var first=!B.length;sb.from('books').insert(rows).then(function(x){if(x.error){alert(x.error.message);return}save('jr2_s',S);return loadAll()}).then(function(){if(B.length){cur=first?B[0].id:B[B.length-1].id;screen='app';tab='write';render()}})};
+}
+function shrink(f,cb){var r=new FileReader();r.onload=function(){var i=new Image();i.onload=function(){var s=Math.min(1,700/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.7))};i.src=r.result};r.readAsDataURL(f)}
+var LY2={travel:[['one','1 picture, writing beside it'],['two','2 smaller pictures, writing beside them'],['flow','Pictures and writing, one after another'],['text','Writing only']]},MXL={grid:4,one:1,two:2,flow:6,text:0},PV=[];
+LY2.couple=LY2.wed=LY2.travel;
+function ly(){return $('#ly')?$('#ly').value:'grid'}
+function drawPV(){var mx=MXL[ly()],fc=ly()==='flow',sc=ly()==='grid'||fc;$('#pw').style.display=mx?'':'none';PV=PV.slice(0,mx);
+ $('#pv').innerHTML=PV.map(function(x,i){return '<div class="pvi"><img src="'+x.u+'" alt="Preview"><div style="flex:1;display:grid;gap:6px">'+(sc?'<input data-ci="'+i+'" maxlength="'+(fc?400:120)+'" placeholder="'+(fc?'Tell the story of this picture':'Caption for this picture')+'" value="'+esc(x.c)+'">':'')+'<button type="button" class="s" data-rm="'+i+'">Remove picture</button></div></div>'}).join('');
+ $('#pc').textContent=PV.length+' of '+mx+' pictures added';
+ on('[data-rm]',function(x){x.onclick=function(){PV.splice(+x.dataset.rm,1);drawPV()}});on('[data-ci]',function(x){x.oninput=function(){PV[+x.dataset.ci].c=x.value}})}
+function rWrite(){
+ var b=bk(),cap=b.kind==='pic',sh=b.kind==='couple'||b.kind==='wed',lys=LY2[b.kind]||null,rec=be().slice(-3).reverse(),h='',ph={hard:'No filter. Say it the way it is.',good:'What made today good?'}[b.kind]||'What happened today?';PV=[];
+ if(sh&&b.owner_id===U.id)h+='<div class="panel"><b>Invite your partner</b><p class="note">Make a code and send it to them. It works once and expires in 7 days. They create their own account, then tap "I have a share code" on the first screen or "Join with code" at the top.</p><button class="s" id="iv">Make a share code</button><div class="code" id="sc" style="display:none"></div></div>';
+ h+='<div class="sheet'+lace()+'" style="'+theme()+'"><div class="band"><span class="lbl">'+esc(S.title)+'</span></div><div class="body"><label for="d">Date</label><input type="date" id="d" value="'+today+'"><label>How are you feeling?</label><div class="moods">'+['\ud83d\ude0a','\ud83d\ude0c','\ud83e\udd70','\ud83d\ude34','\ud83d\ude14','\ud83d\ude24','\ud83e\udd29','\ud83d\ude30'].map(function(x){return '<button type="button" data-e="'+x+'" aria-pressed="false" aria-label="Mood '+x+'">'+x+'</button>'}).join('')+'</div><label for="wx">Weather</label><select id="wx"><option value="">Choose\u2026</option>'+['\u2600\ufe0f Sunny','\u26c5 Partly cloudy','\u2601\ufe0f Overcast','\ud83c\udf27\ufe0f Rainy','\u26c8\ufe0f Stormy','\u2744\ufe0f Snowy','\ud83c\udf2b\ufe0f Foggy','\ud83d\udca8 Windy'].map(function(w){return '<option>'+w+'</option>'}).join('')+'</select><label for="so">Song on repeat</label><input id="so" placeholder="Song \u2013 Artist">'
+ +(b.ph?(lys?'<label for="ly">Page layout</label><select id="ly">'+lys.map(function(o){return '<option value="'+o[0]+'">'+o[1]+'</option>'}).join('')+'</select>':'')+'<div id="pw"><label for="im">Pictures</label><input type="file" id="im" accept="image/*" multiple><div class="note" id="pc"></div><div id="pv"></div></div>':'')
+ +'<label for="t">'+(cap?'Caption for the whole page (optional)':'Your page')+'</label>'+(cap?'<input id="t" maxlength="200" placeholder="One line for the whole page">':'<textarea id="t" placeholder="'+ph+'"></textarea>')
+ +(sh?'<label for="nt">A short message to your partner</label><input id="nt" maxlength="140" placeholder="Like a signature at the end of the page">':'')
+ +'<button class="p" id="sv">Save page</button><div class="msg" id="m"></div>'+rec.map(function(e){return '<div class="entry"><small>'+dName(e.date)+'</small>'+meta(e)+'<p>'+esc(e.text)+'</p></div>'}).join('')+'</div></div>';
+ $('#v').innerHTML=h;
+ if($('#iv'))$('#iv').onclick=function(){sb.rpc('create_share_code',{b:b.id}).then(function(x){var e=$('#sc');e.style.display='block';e.textContent=x.error?x.error.message:x.data})};
+ on('[data-e]',function(x){x.onclick=function(){var i=mood.indexOf(x.dataset.e);if(i<0)mood.push(x.dataset.e);else mood.splice(i,1);x.setAttribute('aria-pressed',i<0)}});
+ if(b.ph){if($('#ly'))$('#ly').onchange=drawPV;$('#im').onchange=function(){var fs=Array.prototype.slice.call(this.files),room=MXL[ly()]-PV.length;this.value='';fs.slice(0,Math.max(room,0)).forEach(function(f){shrink(f,function(u){PV.push({u:u,c:''});drawPV()})})};drawPV()}
+ $('#sv').onclick=function(){var t=$('#t').value.trim(),d=$('#d').value,nt=$('#nt')?$('#nt').value.trim():'';
+  if(!d||(!t&&!PV.length)){$('#m').textContent='Add a date and some words or a picture first.';return}
+  var row={book_id:b.id,author_id:U.id,entry_date:d,body:t,song:$('#so').value.trim(),mood:mood.join(''),weather:$('#wx').value,layout:b.ph?ly():'small',photos:[],captions:PV.map(function(x){return x.c})};
+  Promise.all(PV.map(function(x,i){return fetch(x.u).then(function(r){return r.blob()}).then(function(bl){var p=b.id+'/'+Date.now()+'_'+i+'.jpg';return sb.storage.from('photos').upload(p,bl,{contentType:'image/jpeg'}).then(function(y){if(y.error)throw y.error;return p})})})).then(function(ps){row.photos=ps;return sb.from('entries').insert(row).select('id').single()}).then(function(x){if(x.error)throw x.error;return nt?sb.from('entry_notes').insert({entry_id:x.data.id,book_id:b.id,author_id:U.id,note:nt}):0}).then(function(){return loadEntries()}).then(function(){mood=[];rWrite();$('#m').textContent='Page saved.'}).catch(function(err){$('#m').textContent='Could not save: '+err.message})};
+}
+function nl(L){return {p1:'grid',p2:'grid',p4:'grid',cap:'grid',small:'one',spread:'two'}[L]||L}
+function pics(e){var I=e.imgs||[],C=e.caps||[],L=nl(e.lay);if(!I.length)return '';
+ var all=I.map(function(u,i){return '<figure><img class="im" src="'+u+'" alt="Journal photo">'+(C[i]?'<figcaption>'+esc(C[i])+'</figcaption>':'')+'</figure>'}).join('');
+ return L==='grid'?'<div class="pgrid g'+Math.min(I.length,4)+'">'+all+'</div>':L==='flow'?'<div class="flow">'+all+'</div>':'<div class="pics">'+all+'</div>'}
+function rRead(){
+ var b=bk(),es=be(),L=[{t:'c'}],m='',h='';
+ es.forEach(function(e){var k=e.date.slice(0,7);if(k!==m){m=k;L.push({t:'m',k:k})}L.push({t:'e',e:e})});
+ pg=Math.max(0,Math.min(pg,L.length-1));var p=L[pg],pgs='<div class="sheet'+lace()+'" style="'+theme()+'"><div class="band" style="padding:7px"></div>';
+ var nav='<div class="nv"><button class="s" id="pv"'+(pg?'':' disabled')+'>Previous page</button><span class="note">Page '+(pg+1)+' of '+L.length+'</span><button class="s" id="nx"'+(pg<L.length-1?'':' disabled')+'>Next page</button></div>'+(pg?'<div style="text-align:center"><button class="s" id="cv">\u2190 Back to cover</button></div>':'');
+ if(p.t==='c')h='<div style="'+theme()+';max-width:380px;margin:8px auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))"><div class="cover'+lace()+'"><span class="lbl">'+esc(S.title)+'</span></div></div><p class="note" style="text-align:center">'+esc(b.name)+'</p>';
+ else if(p.t==='m')h=pgs+'<div class="pg c"><h3>'+mName(p.k)+'</h3></div></div>';
+ else{var e=p.e,Ly=nl(e.lay),pc=pics(e),tx=e.text?'<p'+(Ly==='grid'?' class="cp"':'')+'>'+esc(e.text)+'</p>':'',
+  body=(Ly==='one'||Ly==='two')?'<div class="side">'+pc+'<div>'+tx+'</div></div>':Ly==='flow'?tx+pc:pc+tx,
+  mine=(e.notes||[]).some(function(n){return n.author_id===U.id}),
+  sg=(b.kind==='couple'||b.kind==='wed')?'<div class="sig">'+(e.notes||[]).map(function(n){return '<div class="sg"><small>'+(n.author_id===U.id?'You':'Your partner')+'</small><p>'+esc(n.note)+'</p></div>'}).join('')+(mine?'':'<div class="sigadd"><input id="sn" maxlength="140" placeholder="Add your short message"><button class="s" id="sa">Add</button></div>')+'</div>':'';
+  h=pgs+'<div class="pg"><h3>'+dName(e.date)+'</h3>'+meta(e)+body+'<div style="clear:both"></div>'+sg+'</div></div>'}
+ $('#v').innerHTML=h+nav;
+ $('#pv').onclick=function(){pg--;rRead()};$('#nx').onclick=function(){pg++;rRead()};if($('#cv'))$('#cv').onclick=function(){pg=0;rRead()};
+ if($('#sa'))$('#sa').onclick=function(){var v=$('#sn').value.trim();if(!v)return;sb.from('entry_notes').insert({entry_id:p.e.id,book_id:b.id,author_id:U.id,note:v}).then(function(){return loadEntries()}).then(rRead)};
+}
+function rMonths(){
+ var es=be(),M={};es.forEach(function(e){(M[e.date.slice(0,7)]=M[e.date.slice(0,7)]||[]).push(e)});
+ var ks=Object.keys(M).sort().reverse();if(!curM||!M[curM])curM=ks[0];
+ var h='<div class="months">'+ks.map(function(k){return '<button class="s" data-k="'+k+'" aria-pressed="'+(k===curM)+'">'+mName(k)+' ('+M[k].length+')</button>'}).join('')+'</div><div class="panel"><b>'+(curM?mName(curM):'No pages yet')+'</b>'+(M[curM]||[]).map(function(e){return '<div class="entry"><small>'+dName(e.date)+'</small>'+meta(e)+'<p>'+esc(e.text)+'</p><button class="s" data-del="'+e.id+'">Delete</button></div>'}).join('')+'</div><div class="panel"><b>Download this month as a book</b><p class="note">The book uses this journal’s look, fonts and page layouts.</p><button class="p" id="pdf">Book PDF (read or print)</button><label for="kp">Keepsake password</label><input id="kp" type="password" autocomplete="new-password"><button class="p" id="dl">Locked book file</button><p class="note">The locked file opens in any browser with your password. Keep the password safe: it cannot be recovered.</p><div class="msg" id="m"></div></div><div class="panel"><b>Open an old copy</b><label for="of">Choose a downloaded file</label><input type="file" id="of" accept=".txt"><label for="op">Its password</label><input id="op" type="password" autocomplete="off"><button class="s" id="od" style="margin-top:12px">Open</button><pre id="ot" style="white-space:pre-wrap;font:inherit"></pre></div>';
+ $('#v').innerHTML=h;
+ on('[data-k]',function(b){b.onclick=function(){curM=b.dataset.k;rMonths()}});
+ on('[data-del]',function(b){b.onclick=function(){sb.from('entries').delete().eq('id',b.dataset.del).then(function(){return loadEntries()}).then(rMonths)}});
+ $('#pdf').onclick=function(){if(!curM){$('#m').textContent='Pick a month first.';return}$('#m').textContent='Preparing your book\u2026';
+ mkBook(M[curM],mName(curM)).then(function(h){printBook(h);$('#m').textContent='In the print window, choose Save as PDF and turn off Headers and footers.'}).catch(function(){$('#m').textContent='Could not prepare the book. Try again.'})};
+ $('#dl').onclick=function(){var p=$('#kp').value;if(!curM||p.length<6){$('#m').textContent='Pick a month and enter a keepsake password of at least 6 characters.';return}$('#m').textContent='Preparing your locked book\u2026';
+ mkBook(M[curM],mName(curM)).then(function(h){return enc(h,p)}).then(function(c){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([lockedFile(mName(curM),c)],{type:'text/html'}));a.download='release-'+bk().name.replace(/\W+/g,'-')+'-'+curM+'.html';a.click();$('#m').textContent='Downloaded. Keep the file and your password safe.'}).catch(function(){$('#m').textContent='Could not prepare the book. Try again.'})};
+ $('#od').onclick=function(){var f=$('#of').files[0],p=$('#op').value;if(!f||!p){$('#ot').textContent='Choose a file and enter its password.';return}
+ f.text().then(function(t){return dec(t,p)}).then(function(x){$('#ot').textContent=x}).catch(function(){$('#ot').textContent='Wrong password or damaged file.'})}
+}
+var te=new TextEncoder();
+function b64(u){var s='';for(var i=0;i<u.length;i+=8192)s+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(s)}
+function dk(p,salt){return crypto.subtle.importKey('raw',te.encode(p),'PBKDF2',false,['deriveKey']).then(function(m){return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:100000,hash:'SHA-256'},m,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])})}
+function enc(t,p){var salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+ return dk(p,salt).then(function(k){return crypto.subtle.encrypt({name:'AES-GCM',iv:iv},k,te.encode(t))}).then(function(ct){var c=new Uint8Array(ct),o=new Uint8Array(28+c.length);o.set(salt);o.set(iv,16);o.set(c,28);return 'REL1:'+b64(o)})}
+var BOOKCSS="html{background:var(--pp)}body{margin:0;background:var(--pp);color:var(--ik);font:17px/1.6 var(--bf);-webkit-print-color-adjust:exact;print-color-adjust:exact}.cv{background:var(--cv);width:6in;height:9in;display:grid;place-items:center;align-content:center;text-align:center;gap:18px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);font-family:var(--bf);break-after:page}.cv .lbl{font-size:28px;text-shadow:none}.cv p{margin:0;font-size:18px;letter-spacing:.12em;text-transform:uppercase}.e{break-before:page}.e h3{font-size:24px;margin:0 0 4px;font-weight:500}.e figure,.e .side,.e .sig{break-inside:avoid}@page{size:6in 9in;margin:.55in .5in}@page :first{margin:0}@media screen{html{background:#4b4f5c}.cv,.e{width:6in;min-height:9in;margin:24px auto;box-shadow:0 4px 18px rgba(0,0,0,.45);box-sizing:border-box}.e{background:var(--pp);padding:.55in .5in}}";
+var DECJS="var te=new TextEncoder();function unb(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}document.getElementById('g').onclick=function(){var p=document.getElementById('p').value,m=document.getElementById('m'),o=unb(D.slice(5)),salt=o.slice(0,16),iv=o.slice(16,28),ct=o.slice(28);crypto.subtle.importKey('raw',te.encode(p),'PBKDF2',false,['deriveKey']).then(function(k){return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:100000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt'])}).then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},k,ct)}).then(function(b){var h=new TextDecoder().decode(b);document.open();document.write(h);document.close()}).catch(function(){m.textContent='Wrong password.'})}";
+function toData(u){return fetch(u).then(function(r){return r.blob()}).then(function(bl){return new Promise(function(r){var f=new FileReader();f.onload=function(){r(f.result)};f.readAsDataURL(bl)})})}
+function bookHTML(b,es,label){
+ var css=document.querySelector('style').textContent,fl=document.querySelector('link[href*="fonts.googleapis"]').href,
+ pages=es.map(function(e){var Ly=nl(e.lay),pc=pics(e),tx=e.text?'<p'+(Ly==='grid'?' class="cp"':'')+'>'+esc(e.text)+'</p>':'',
+  body=(Ly==='one'||Ly==='two')?'<div class="side">'+pc+'<div>'+tx+'</div></div>':Ly==='flow'?tx+pc:pc+tx,
+  sg=(e.notes||[]).map(function(n){return '<div class="sg"><small>'+(n.author_id===U.id?'You':'Your partner')+'</small><p>'+esc(n.note)+'</p></div>'}).join('');
+  return '<section class="e"><h3>'+dName(e.date)+'</h3>'+meta(e)+body+'<div style="clear:both"></div>'+(sg?'<div class="sig">'+sg+'</div>':'')+'</section>'}).join('');
+ return '<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>'+esc(S.title)+'</title><link rel="stylesheet" href="'+fl+'"><style>'+css+':root{'+theme()+'}'+BOOKCSS+'</style></head><body><section class="cv"><span class="lbl">'+esc(S.title)+'</span><p>'+esc(label)+'</p></section>'+pages+'</body></html>'}
+function mkBook(es,label){return Promise.all(es.map(function(e){return Promise.all((e.imgs||[]).map(toData)).then(function(d){return Object.assign({},e,{imgs:d})})})).then(function(x){return bookHTML(bk(),x,label)})}
+function printBook(h){var f=document.createElement('iframe');f.style.cssText='position:fixed;left:-9999px;top:0;width:6in;height:9in;border:0';document.body.appendChild(f);f.onload=function(){var w=f.contentWindow;(w.document.fonts?w.document.fonts.ready:Promise.resolve()).then(function(){setTimeout(function(){w.focus();w.print()},400)})};f.srcdoc=h}
+function lockedFile(label,c){return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>'+esc(S.title)+' (locked)</title><style>body{font:16px system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;background:#eef1f7;color:#17203a}.b{max-width:340px;padding:26px;background:#fff;border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,.15)}input,button{width:100%;padding:10px;margin-top:10px;font:inherit;border-radius:6px;border:1px solid #c9cfe0}button{background:#2f3fa8;color:#fff;border:0;font-weight:600}</style></head><body><div class="b"><h2 style="margin-top:0">'+esc(S.title)+'</h2><p>'+esc(label)+'. This book is locked. Enter your keepsake password to open it.</p><input id="p" type="password" autocomplete="off"><button id="g">Open book</button><p id="m" style="color:#b00020"></p></div><script>var D="'+c+'";'+DECJS+'<\/script></body></html>'}
+function unb(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}
+function dec(s,p){var m=s.match(/REL1:([A-Za-z0-9+\/=]+)/);if(!m)return Promise.reject();var o=unb(m[1]),salt=o.slice(0,16),iv=o.slice(16,28),ct=o.slice(28);return dk(p,salt).then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},k,ct)}).then(function(b){return new TextDecoder().decode(b)})}
+function rLegacy(){
+ var L=load('jr2_l',{name:'',email:'',months:'6',mode:'code',code:''});
+ $('#v').innerHTML='<div class="panel"><b>Who inherits your journals?</b><p class="note">Your choices are saved to your account. Emails to your heir start once email is set up.</p><label for="ln">Heir’s name</label><input id="ln" value="'+esc(L.name)+'"><label for="le">Heir’s email</label><input id="le" type="email" value="'+esc(L.email)+'"><label for="lm">If I don’t check in for</label><select id="lm">'+['3','6','12'].map(function(m){return '<option value="'+m+'"'+(m===L.months?' selected':'')+'>'+m+' months</option>'}).join('')+'</select><label for="lo">How they get access</label><select id="lo"><option value="code"'+(L.mode==='code'?' selected':'')+'>Recovery code I give them myself (most private)</option><option value="auto"'+(L.mode==='auto'?' selected':'')+'>Site emails them after check-ins stop (needs email, coming later)</option></select><button class="p" id="gc">Generate recovery code</button><div class="code" id="cd">'+(L.code||'Not generated yet')+'</div><button class="s" id="sl" style="margin-top:12px">Save legacy settings</button><div class="msg" id="m"></div></div>';
+ $('#gc').onclick=function(){var a=crypto.getRandomValues(new Uint8Array(12)),al='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',c='';for(var i=0;i<12;i++){c+=al[a[i]%al.length];if(i%4===3&&i<11)c+='-'}L.code=c;$('#cd').textContent=c};
+ $('#sl').onclick=function(){L.name=$('#ln').value;L.email=$('#le').value;L.months=$('#lm').value;L.mode=$('#lo').value;save('jr2_l',L);$('#m').textContent='Saved. Write the code down and keep it somewhere safe.'};
+}
+function rAuth(){var up=authMode==='up';
+ $('#v').innerHTML='<div class="land"><h1 class="logo">Release</h1><div class="panel" style="width:100%;max-width:380px;text-align:left">'+(up?'<label for="an">Your name</label><input id="an" autocomplete="name">':'')+'<label for="ae">Email</label><input id="ae" type="email" autocomplete="email"><label for="ap">Password</label><input id="ap" type="password" autocomplete="'+(up?'new-password':'current-password')+'"><button class="p" id="ag">'+(up?'Create account':'Sign in')+'</button><div class="msg" id="am"></div><button class="s" id="at" style="margin-top:10px">'+(up?'I already have an account':'New here? Create an account')+'</button></div></div>';
+ $('#at').onclick=function(){authMode=up?'in':'up';rAuth()};
+ $('#ag').onclick=function(){var e=$('#ae').value.trim(),p=$('#ap').value;if(!e||p.length<6){$('#am').textContent='Enter your email and a password of at least 6 characters.';return}
+  var q=up?sb.auth.signUp({email:e,password:p,options:{data:{display_name:$('#an').value.trim()}}}):sb.auth.signInWithPassword({email:e,password:p});
+  q.then(function(x){if(x.error){$('#am').textContent=x.error.message;return}if(!x.data.session){$('#am').textContent='Account created, but email confirmation is still on. Turn off "Confirm email" in Supabase Authentication settings.';return}boot()})}}
+async function loadEntries(){var r=await sb.from('entries').select('*').order('entry_date'),rows=r.data||[],ps=[].concat.apply([],rows.map(function(e){return e.photos||[]})),m={};
+ if(ps.length){var s=await sb.storage.from('photos').createSignedUrls(ps,3600);(s.data||[]).forEach(function(x){if(x.signedUrl)m[x.path]=x.signedUrl})}
+ E=rows.map(function(e){return {id:e.id,book:e.book_id,date:e.entry_date,text:e.body,song:e.song,mood:e.mood,wx:e.weather,imgs:(e.photos||[]).map(function(p){return m[p]}).filter(Boolean),lay:e.layout,caps:e.captions||[],auth:e.author_id}});var nt=(await sb.from('entry_notes').select('*')).data||[];E.forEach(function(e){e.notes=nt.filter(function(x){return x.entry_id===e.id})})}
+async function loadAll(){
+ var p=(await sb.from('profiles').select('*').eq('id',U.id).single()).data;
+ var b=(await sb.from('books').select('*').order('created_at')).data||[];
+ B=b.map(function(k){return {id:k.id,kind:k.kind,name:k.name,owner_id:k.owner_id,look:k.look,color:k.color,title:k.title,font:k.font,lc:k.label_color,tf:k.title_font,ph:['pic','travel','wed','couple'].indexOf(k.kind)>=0?1:0}});
+ if(!B.some(function(k){return k.id===cur}))cur=B.length?B[0].id:'';
+ var h=(await sb.from('heirs').select('*').eq('user_id',U.id).maybeSingle()).data;HL=h?{name:h.heir_name,email:h.heir_email,months:String(h.inactivity_months),mode:h.mode,code:''}:null;
+ await loadEntries()}
+function joinCode(){screen='join';render()}
+function rJoin(){
+ $('#v').innerHTML='<button class="s" id="bk">\u2190 Back</button><h2 class="ph">Join a shared journal</h2><p class="sub">Type the code your partner sent you.</p><div class="panel" style="max-width:420px"><label for="jc">Share code</label><input id="jc" maxlength="20" autocomplete="off" placeholder="For example 3F9A1C27BD" style="text-transform:uppercase;letter-spacing:.1em"><button class="p" id="jg">Join journal</button><div class="msg" id="jm"></div></div>';
+ $('#bk').onclick=function(){screen=B.length?'app':'land';render()};
+ $('#jg').onclick=function(){var c=$('#jc').value.trim();if(!c){$('#jm').textContent='Type the code first.';return}
+  sb.rpc('join_book',{c:c}).then(function(x){if(x.error){$('#jm').textContent=x.error.message;return}return loadAll().then(function(){cur=x.data;screen='app';tab='write';render()})})}}
+var authMode='in';
+async function boot(){var r=await sb.auth.getSession();U=r.data.session&&r.data.session.user;if(!U){screen='auth';return render()}await loadAll();screen=B.length?'app':'land';render()}
+boot();
+</script></body></html>
